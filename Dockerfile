@@ -47,6 +47,8 @@ LABEL org.label-schema.docker.cmd="docker run -it --rm --name portainer-backup -
 # INSTALL ADDITIONAL IMAGE DEPENDENCIES AND COPY APPLICATION TO IMAGE
 RUN apk update && apk add --no-cache tzdata
 RUN mkdir -p /portainer-backup/src
+RUN apk add --no-cache ca-certificates
+RUN update-ca-certificates
 COPY package.json /portainer-backup
 COPY src/*.js /portainer-backup/src
 WORKDIR /portainer-backup
